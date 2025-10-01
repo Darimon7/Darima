@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Audio</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PBKXJ64MY2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PBKXJ64MY2');
+</script>
+
 <style>
 body{margin:0;overflow:hidden;font-family:sans-serif;background:#fff0f6;}
 .audio-container{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:16px}
@@ -30,16 +40,21 @@ button{padding:10px 20px;border:none;border-radius:12px;background:linear-gradie
   box-shadow:0 2px 8px #ff4d6d44;
   border:2px solid #fff0f6;
 }
-@keyframes float{0%{transform:translateY(100vh) scale(0.5)}50%{transform:translateY(50vh) scale(1)}100%{transform:translateY(-10vh) scale(0.5)}}
+@keyframes float{
+  0%{transform:translateY(100vh) scale(0.5)}
+  50%{transform:translateY(50vh) scale(1)}
+  100%{transform:translateY(-10vh) scale(0.5)}
+}
 </style>
 </head>
 <body>
 <div class="audio-container">
-<audio id="audio" src="https://Darimon7.github.io/Darima/audio.mp3"></audio>
-<button id="playBtn">▶️ Play / Pause</button>
-<div class="progress" id="progressBar"><div class="bar" id="bar"></div></div>
-<div class="time" id="timeDisplay">00:00 / 00:00</div>
+  <audio id="audio" src="https://Darimon7.github.io/Darima/audio.mp3"></audio>
+  <button id="playBtn">▶️ Play / Pause</button>
+  <div class="progress" id="progressBar"><div class="bar" id="bar"></div></div>
+  <div class="time" id="timeDisplay">00:00 / 00:00</div>
 </div>
+
 <script>
 const audio=document.getElementById('audio');
 const playBtn=document.getElementById('playBtn');
@@ -47,25 +62,23 @@ const progressBar=document.getElementById('progressBar');
 const bar=document.getElementById('bar');
 const timeDisplay=document.getElementById('timeDisplay');
 
-
 playBtn.addEventListener('click',()=>{audio.paused?audio.play():audio.pause();});
 audio.addEventListener('play',()=>playBtn.textContent='⏸️ Pausar');
 audio.addEventListener('pause',()=>playBtn.textContent='▶️ Play / Pause');
 audio.addEventListener('timeupdate',()=>{
-const progress=(audio.currentTime/audio.duration)*100;
-bar.style.width=progress+'%';
-const currentMin=Math.floor(audio.currentTime/60).toString().padStart(2,'0');
-const currentSec=Math.floor(audio.currentTime%60).toString().padStart(2,'0');
-const durMin=Math.floor(audio.duration/60).toString().padStart(2,'0');
-const durSec=Math.floor(audio.duration%60).toString().padStart(2,'0');
-timeDisplay.textContent=`${currentMin}:${currentSec} / ${durMin}:${durSec}`;
+  const progress=(audio.currentTime/audio.duration)*100;
+  bar.style.width=progress+'%';
+  const currentMin=Math.floor(audio.currentTime/60).toString().padStart(2,'0');
+  const currentSec=Math.floor(audio.currentTime%60).toString().padStart(2,'0');
+  const durMin=Math.floor(audio.duration/60).toString().padStart(2,'0');
+  const durSec=Math.floor(audio.duration%60).toString().padStart(2,'0');
+  timeDisplay.textContent=`${currentMin}:${currentSec} / ${durMin}:${durSec}`;
 });
 progressBar.addEventListener('click',e=>{
-const rect=progressBar.getBoundingClientRect();
-const pos=(e.clientX-rect.left)/rect.width;
-audio.currentTime=pos*audio.duration;
+  const rect=progressBar.getBoundingClientRect();
+  const pos=(e.clientX-rect.left)/rect.width;
+  audio.currentTime=pos*audio.duration;
 });
-
 
 // generar corazones
 function createHeart(){
@@ -74,7 +87,6 @@ function createHeart(){
   const size=10+Math.random()*20;
   heart.style.width=size+'px';
   heart.style.height=size+'px';
-  // Calcula left para que el corazón no se salga del viewport
   const maxLeft=window.innerWidth-size;
   heart.style.left=Math.random()*maxLeft+'px';
   heart.style.animationDuration=3+Math.random()*3+'s';
