@@ -26,7 +26,7 @@ const form=document.getElementById('loginForm');
 const errorMsg=document.getElementById('errorMsg');
 form.addEventListener('submit',e=>{
 e.preventDefault();
-const user=document.getElementById('user').value.toLowerCase();
+const user=document.getElementById('user').value;
 const pass=document.getElementById('pass').value;
 if((user==='Dario'||user==='Mara')&&pass==='13/1/2024'){
 window.location.href='audio.html';
@@ -38,3 +38,4 @@ errorMsg.textContent='Usuario o contraseña incorrecta';
 </body>
 
 </html>
+
