@@ -26,9 +26,9 @@ const form=document.getElementById('loginForm');
 const errorMsg=document.getElementById('errorMsg');
 form.addEventListener('submit',e=>{
 e.preventDefault();
-const user=document.getElementById('user').value;
+const user=document.getElementById('user').value.toLowerCase();
 const pass=document.getElementById('pass').value;
-if((user==='Dario'||user==='Mara')&&pass==='13/1/2024'){
+if((user==='dario'||user==='mara')&&pass==='13/1/2024'){
 window.location.href='audio.html';
 }else{
 errorMsg.textContent='Usuario o contraseña incorrecta';
